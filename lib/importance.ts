@@ -1,0 +1,3 @@
+const high=['deadline','today','approval','board','legal','finance','customer','partner','payroll','contract','launch','hiring','travel','flight','family','risk','blocked','waiting'];
+const low=['newsletter','receipt','digest','unsubscribe','promotion'];
+export function rankEmail(e:{subject:string;snippet:string;from:string}){const text=`${e.from} ${e.subject} ${e.snippet}`.toLowerCase();let score=40;for(const w of high) if(text.includes(w)) score+=10;for(const w of low) if(text.includes(w)) score-=30;score=Math.max(0,Math.min(100,score));return {score,reason:score>80?'Time-sensitive or relationship-sensitive executive item':score>55?'Potentially relevant follow-up':'Low-signal or informational'};}

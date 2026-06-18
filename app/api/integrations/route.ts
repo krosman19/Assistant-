@@ -1,0 +1,4 @@
+import {NextResponse} from 'next/server';import {iCloudGuide} from '@/lib/integrations';
+const sources=[{provider:'gmail',display_name:'Gmail',status:'available',last_sync_at:null},{provider:'microsoft',display_name:'Outlook / Microsoft 365',status:'available',last_sync_at:null},{provider:'imap',display_name:'IMAP Mail',status:'demo-connected',last_sync_at:new Date().toISOString()},{provider:'caldav',display_name:'CalDAV Calendar',status:'demo-connected',last_sync_at:new Date().toISOString()},{provider:'icloud',display_name:'iCloud Mail + Calendar',status:'setup-ready',last_sync_at:null}];
+export async function GET(){return NextResponse.json({sources,iCloudGuide})}
+export async function POST(req:Request){const body=await req.json();return NextResponse.json({id:`demo-${body.provider}`,status:'connected',message:'Demo connection stored. Production uses encrypted credentials.'},{status:201})}
