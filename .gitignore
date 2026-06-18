@@ -5,5 +5,3 @@ node_modules
 tsconfig.tsbuildinfo
 .DS_Store
 npm-debug.log*
-.data
-.generated
