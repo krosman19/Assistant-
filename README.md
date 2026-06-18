@@ -20,8 +20,6 @@ cp .env.example .env
 npm run dev
 ```
 
-The default `npm run dev` command starts a dependency-free demo server in `scripts/dev-server.mjs`, so the three-command quick start works even in restricted environments that cannot reach npm. The Next.js app files remain in `app/` for framework-based development once registry access is available.
-
 Open `http://localhost:3000`.
 
 For database-backed production work:
@@ -85,7 +83,7 @@ This repository intentionally does not require committed binary audio. Demo audi
 
 ### Fixing external npm registry access limitations
 
-A `403 Forbidden` from `https://registry.npmjs.org` is usually caused by the execution environment, corporate policy, proxy configuration, or missing registry credentials. The checked-in demo avoids external packages so `npm install` can still complete. If you re-enable Next.js/Prisma package installation in a restricted environment, use one of these environment fixes:
+A `403 Forbidden` from `https://registry.npmjs.org` is usually caused by the execution environment, corporate policy, proxy configuration, or missing registry credentials. It cannot be fully fixed from application code. Use one of these environment fixes:
 
 ```bash
 npm config get registry
@@ -104,13 +102,3 @@ npm install
 ```
 
 In Replit or CI, add the registry token or mirror URL as a secret and avoid relying on local proxy variables.
-
-### Database commands in dependency-free demo mode
-
-The repository includes fallback implementations for `npm run prisma:generate` and `npm run db:push` so reviewers can exercise the documented workflow before Prisma packages are available. In this mode:
-
-- `npm run prisma:generate` writes a model manifest to `.generated/prisma-client.mjs`.
-- `npm run db:push` writes a placeholder schema plan to `.data/schema.sql`.
-- A real PostgreSQL database still requires `createdb` from PostgreSQL client tools and Prisma packages from an accessible npm registry.
-
-If `createdb` is missing locally, install PostgreSQL client tools (`postgresql-client` on Debian/Ubuntu, `libpq` on Homebrew) or run Postgres through your platform provider.
