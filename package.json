@@ -1,0 +1,19 @@
+{
+  "name": "daily-briefing-agent",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Demo-ready iOS-first daily audio briefing app scaffold.",
+  "scripts": {
+    "dev": "node scripts/dev-server.mjs",
+    "build": "npm run typecheck",
+    "start": "node scripts/dev-server.mjs",
+    "lint": "npm run typecheck",
+    "typecheck": "tsc --noEmit",
+    "prisma:generate": "echo 'Install Prisma dependencies in a registry-enabled environment before running prisma generate.'",
+    "db:push": "echo 'Install Prisma dependencies in a registry-enabled environment before running prisma db push.'",
+    "seed": "echo 'Demo data is built into lib/demoData.ts.'"
+  },
+  "dependencies": {},
+  "devDependencies": {},
+  "optionalDependencies": {}
+}
